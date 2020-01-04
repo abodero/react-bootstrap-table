@@ -9,6 +9,7 @@ function App() {
       { db.map((item, key) =>
         <li key={item.id}>{item.name}</li>
       )}
+      <Table/>
     </div>
   );
 }
