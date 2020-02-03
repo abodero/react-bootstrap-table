@@ -4,10 +4,33 @@ const Table = () => {
   return (
     <div>
       <table className="table table-bordered table-hover">
-      <tbody><tr><td>Hello I am a bootstrap table</td></tr></tbody>
+      <TableHeader></TableHeader>
+      <TableBody></TableBody>
       </table>
     </div>
   );
+}
+
+const TableHeader = () => {
+  return(
+      <thead className="thead-dark" key="header-1">
+          <tr key="header-0">
+            <td>Hello i am a table header</td>
+          </tr>
+      </thead>
+  );
+}
+
+const TableBody = () => {
+  return(
+      <tbody>
+          <tr key="spinner-0">
+              <td>
+                 Hello i am a table row 
+              </td>
+          </tr>
+      </tbody>
+);
 }
 
 export default Table;
