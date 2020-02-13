@@ -1,34 +1,48 @@
 import React from 'react';
 
-const Table = () => {
+const Table = (props) => {
+  const { headers, rows } = props;
   return (
     <div>
       <table className="table table-bordered table-hover">
-      <TableHeader></TableHeader>
-      <TableBody></TableBody>
+      <TableHeader headers={headers}></TableHeader>
+      <TableBody headers={headers} rows={rows}></TableBody>
       </table>
     </div>
   );
 }
 
-const TableHeader = () => {
+const TableHeader = (props) => {
+  const { headers } = props;
   return(
-      <thead className="thead-dark" key="header-1">
-          <tr key="header-0">
-            <td>Hello i am a table header</td>
-          </tr>
-      </thead>
+    <thead className="thead-dark" key="header-1">
+        <tr key="header-0">
+          { headers && headers.map((value, index) => {
+              return <th key={index}><div>{value}</div></th>
+          })}
+        </tr>
+    </thead>
   );
 }
 
-const TableBody = () => {
+const TableBody = (props) => {
+  const { headers, rows } = props;
+
+  function buildRow(row, headers) {
+    return (
+         <tr key={row.id}>
+         { headers.map((value, index) => {
+             return <td key={index}>{row[value]}</td>
+          })}
+         </tr>
+     )
+  };
+
   return(
       <tbody>
-          <tr key="spinner-0">
-              <td>
-                 Hello i am a table row 
-              </td>
-          </tr>
+        { rows && rows.map((value) => {
+                return buildRow(value, headers);
+            })}
       </tbody>
 );
 }

@@ -1,15 +1,17 @@
 import React from 'react';
 import './App.css';
 import db from "./db.json"
+import schema from './schema';
 import Table from './Table';
 
 function App() {
   return (
-    <div className="App">
-      { db.map((item, key) =>
-        <li key={item.id}>{item.name}</li>
-      )}
-      <Table/>
+    <div className="container p-2">
+      <div className="row">
+        <div className="col">
+          <Table headers={Object.keys(schema)} rows={db} />
+        </div>    
+      </div>
     </div>
   );
 }
