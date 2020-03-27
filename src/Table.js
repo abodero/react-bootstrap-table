@@ -1,4 +1,6 @@
 import React from 'react';
+import TableHeader from './TableHeader';
+import TableBody from './TableBody';
 
 const Table = (props) => {
   const { headers, rows } = props;
@@ -10,41 +12,6 @@ const Table = (props) => {
       </table>
     </div>
   );
-}
-
-const TableHeader = (props) => {
-  const { headers } = props;
-  return(
-    <thead className="thead-dark" key="header-1">
-        <tr key="header-0">
-          { headers && headers.map((value, index) => {
-              return <th key={index}><div>{value}</div></th>
-          })}
-        </tr>
-    </thead>
-  );
-}
-
-const TableBody = (props) => {
-  const { headers, rows } = props;
-
-  function buildRow(row, headers) {
-    return (
-         <tr key={row.id}>
-         { headers.map((value, index) => {
-             return <td key={index}>{row[value]}</td>
-          })}
-         </tr>
-     )
-  };
-
-  return(
-      <tbody>
-        { rows && rows.map((value) => {
-                return buildRow(value, headers);
-            })}
-      </tbody>
-);
 }
 
 export default Table;
