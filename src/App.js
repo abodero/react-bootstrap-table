@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect }  from 'react';
 import './App.css';
+import db from "./db.json"
+import schema from './schema';
+import Table from './Table';
 
 function App() {
+  const [ data, setData] = useState(null);
+
+  useEffect(() => {
+    new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(db);
+        }, 2000)
+    }).then((result) => {
+        setData(result);
+    })
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container p-2">
+      <div className="row">
+        <div className="col">
+          <Table headers={Object.keys(schema)} rows={data} />
+        </div>
+      </div>
     </div>
   );
 }
